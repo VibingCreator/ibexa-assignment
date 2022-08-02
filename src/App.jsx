@@ -1,23 +1,16 @@
-import React, { createContext, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css'
-import { Home, Keypad, Balance, Withdraw, Deposit } from './components';
-import { DisplayContext } from './contexts';
-
-const router = {
-  home: <Home />,
-  balance: <Balance />,
-  withdraw: <Withdraw />,
-  deposit: <Deposit />,
-}
+import { Display, Keypad } from './components';
+import { AccountContext } from './contexts/Account';
 
 export function App() {
-  const [display, setDisplay] = useState('home');
+  const [account, setAccount] = useState({ balance: 500 });
 
   return (
     <>
-      <DisplayContext.Provider value={[display, setDisplay]}>
-        {router[display]}
-      </DisplayContext.Provider>
+      <AccountContext.Provider value={[account, setAccount]}>
+        <Display />
+      </AccountContext.Provider>
       <Keypad />
     </>
   );
