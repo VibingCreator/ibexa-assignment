@@ -1,26 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './styles.css';
+import { InputContext } from '../../contexts';
+
+const buttons = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '', '0', ''];
 
 export function Keypad() {
+  const [input, setInput] = useContext(InputContext);
+
   return (
     <>
       <div className='keypad'>
-        <button className='keypad__button'>1</button>
-        <button className='keypad__button'>2</button>
-        <button className='keypad__button'>3</button>
-        <button className='keypad__button'>clear</button>
-        <button className='keypad__button'>4</button>
-        <button className='keypad__button'>5</button>
-        <button className='keypad__button'>6</button>
-        <button className='keypad__button'></button>
-        <button className='keypad__button'>7</button>
-        <button className='keypad__button'>8</button>
-        <button className='keypad__button'>9</button>
-        <button className='keypad__button'></button>
-        <button className='keypad__button'></button>
-        <button className='keypad__button'>0</button>
-        <button className='keypad__button'></button>
-        <button className='keypad__button'></button>
+        {
+          buttons.map((button) => (
+            <button 
+              className='keypad__button'
+              onClick={() => setInput((p) => p + button)}
+            >
+              {button}
+            </button>
+          ))
+        }
+        <div className='keypad__action'>
+          <button onClick={() => setInput('')}>Clear</button>
+          <button></button>
+          <button></button>
+          <button></button>
+        </div>
       </div>
     </>
   );

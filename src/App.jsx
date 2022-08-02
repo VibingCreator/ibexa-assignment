@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import './App.css'
-import { Display, Keypad } from './components';
-import { AccountContext } from './contexts/Account';
+import { Transaction, Keypad } from './components';
+import { InputContext } from './contexts';
 
 export function App() {
-  const [account, setAccount] = useState({ balance: 500 });
+  const [input, setInput] = useState('');
 
   return (
     <>
-      <AccountContext.Provider value={[account, setAccount]}>
-        <Display />
-      </AccountContext.Provider>
-      <Keypad />
+      <InputContext.Provider value={[input, setInput]}>
+        <Transaction />
+        <Keypad />
+      </InputContext.Provider>
     </>
   );
 }
