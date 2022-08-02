@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css'
 
-import { Keypad } from './components';
+import { Home, Keypad } from './components';
 
 export function App() {
   return (
     <>
+      <Home />
       <Keypad />
     </>
   );
